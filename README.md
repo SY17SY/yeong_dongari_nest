@@ -4,7 +4,7 @@
 
 - [x] First Commit: 대학 스포츠 동아리 관리 어플리케이션 초기 설정
 - [x] feat: Color, ThemeData 설정
-- [ ] feat: Router, Riverpod 설정
+- [x] feat: Router, Riverpod 설정
 
 - [ ] feat: Navigation Bar (Home, Post, Upload, Notification, My) 구현
 
