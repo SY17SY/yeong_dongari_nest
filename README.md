@@ -6,7 +6,8 @@
 - [x] feat: Color, ThemeData 설정
 - [x] feat: Router, Riverpod 설정
 
-- [ ] feat: Navigation Bar (Home, Post, Upload, Notification, My) 구현
+- [x] feat: View 틀 구현
+- [ ] feat: Navigation Bar (Home, Post, Upload, Inbox, My) 구현
 
 - [ ] feat: Post Screen 구현
 
@@ -24,7 +25,7 @@
 
 - [ ] feat: Upload Screen 구현
 
-- [ ] feat: Notification Screen 구현
+- [ ] feat: Inbox Screen 구현
 
 - [ ] feat: My Screen 구현
 
