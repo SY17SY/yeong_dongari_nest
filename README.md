@@ -7,7 +7,7 @@
 - [x] feat: Router, Riverpod 설정
 
 - [x] feat: View 틀 구현
-- [ ] feat: Navigation Bar (Home, Post, Upload, Inbox, My) 구현
+- [x] feat: Navigation Bar (Home, Post, Upload, Inbox, My) 구현
 
 - [ ] feat: Post Screen 구현
 
