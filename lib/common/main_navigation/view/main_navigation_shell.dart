@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yeong_dongari_nest/common/main_navigation/model/navigation_model.dart';
 import 'package:yeong_dongari_nest/common/main_navigation/view_model/main_navigation_vm.dart';
-import 'package:yeong_dongari_nest/common/main_navigation/widget/nav_tab.dart';
+import 'package:yeong_dongari_nest/common/main_navigation/view/widget/nav_tab.dart';
 import 'package:yeong_dongari_nest/feature/home/view/home_screen.dart';
 import 'package:yeong_dongari_nest/feature/inbox/view/inbox_screen.dart';
 import 'package:yeong_dongari_nest/feature/post/view/post_screen.dart';
