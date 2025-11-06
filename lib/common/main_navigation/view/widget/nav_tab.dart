@@ -32,7 +32,7 @@ class NavTab extends StatelessWidget {
           opacity: isSelected ? 1 : 0.6,
           duration: Duration(milliseconds: 200),
           child: Padding(
-            padding: const EdgeInsets.only(top: Sizes.d12),
+            padding: const EdgeInsets.only(top: Sizes.d10, bottom: Sizes.d16),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,6 +40,7 @@ class NavTab extends StatelessWidget {
                 FaIcon(
                   isSelected ? selectedIcon : icon,
                   color: AppColors.neutral900,
+                  size: Sizes.d16,
                 ),
                 Gaps.v4,
                 TlabelLarge14(text, color: AppColors.neutral900),
