@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yeong_dongari_nest/constants/colors.dart';
 import 'package:yeong_dongari_nest/constants/sizes.dart';
+import 'package:yeong_dongari_nest/feature/setting/view_model/setting_vm.dart';
 import 'package:yeong_dongari_nest/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(ProviderScope(child: const MyApp()));
+  final sharedPreferences = await SharedPreferences.getInstance();
+
+  runApp(
+    ProviderScope(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends ConsumerWidget {
@@ -19,6 +30,7 @@ class MyApp extends ConsumerWidget {
       title: 'Yeong Dongari Nest',
       debugShowCheckedModeBanner: false,
       routerConfig: ref.watch(routerProvider),
+      themeMode: ref.watch(settingProvider.notifier).themeMode,
       theme: ThemeData(
         useMaterial3: false,
         primaryColor: AppColors.primary,
