@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:yeong_dongari_nest/constants/colors.dart';
 import 'package:yeong_dongari_nest/constants/gaps.dart';
 import 'package:yeong_dongari_nest/constants/sizes.dart';
 import 'package:yeong_dongari_nest/constants/text.dart';
@@ -37,13 +36,9 @@ class NavTab extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                FaIcon(
-                  isSelected ? selectedIcon : icon,
-                  color: AppColors.neutral900,
-                  size: Sizes.d16,
-                ),
-                Gaps.v4,
-                TlabelLarge14(text, color: AppColors.neutral900),
+                FaIcon(isSelected ? selectedIcon : icon, size: Sizes.d20),
+                Gaps.v6,
+                TlabelSmall12(text),
               ],
             ),
           ),
