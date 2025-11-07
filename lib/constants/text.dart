@@ -23,10 +23,10 @@ class TtitleLarge20 extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.titleLarge!.copyWith(
-            color: color ?? Colors.black,
-            fontSize: fontSize,
-            height: maxLines == 1 ? 1.0 : 1.4,
-          ),
+        color: color,
+        fontSize: fontSize,
+        height: maxLines == 1 ? 1.0 : 1.4,
+      ),
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: overflow,
@@ -57,10 +57,10 @@ class TtitleMedium18 extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.titleMedium!.copyWith(
-            color: color ?? Colors.black,
-            fontSize: fontSize,
-            height: maxLines == 1 ? 1.0 : 1.4,
-          ),
+        color: color,
+        fontSize: fontSize,
+        height: maxLines == 1 ? 1.0 : 1.4,
+      ),
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: overflow,
@@ -91,10 +91,10 @@ class TtitleSmall16 extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.titleSmall!.copyWith(
-            color: color ?? Colors.black,
-            fontSize: fontSize,
-            height: maxLines == 1 ? 1.0 : 1.4,
-          ),
+        color: color,
+        fontSize: fontSize,
+        height: maxLines == 1 ? 1.0 : 1.4,
+      ),
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: overflow,
@@ -125,10 +125,10 @@ class TbodyLarge18 extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-            color: color ?? Colors.black,
-            fontSize: fontSize,
-            height: maxLines == 1 ? 1.0 : 1.4,
-          ),
+        color: color,
+        fontSize: fontSize,
+        height: maxLines == 1 ? 1.0 : 1.4,
+      ),
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: overflow,
@@ -159,10 +159,10 @@ class TbodyMedium16 extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-            color: color ?? Colors.black,
-            fontSize: fontSize,
-            height: maxLines == 1 ? 1.0 : 1.4,
-          ),
+        color: color,
+        fontSize: fontSize,
+        height: maxLines == 1 ? 1.0 : 1.4,
+      ),
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: overflow,
@@ -193,10 +193,10 @@ class TbodySmall14 extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.bodySmall!.copyWith(
-            color: color ?? Colors.black,
-            fontSize: fontSize,
-            height: maxLines == 1 ? 1.0 : 1.4,
-          ),
+        color: color,
+        fontSize: fontSize,
+        height: maxLines == 1 ? 1.0 : 1.4,
+      ),
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: overflow,
@@ -227,10 +227,10 @@ class TlabelLarge14 extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.labelLarge!.copyWith(
-            color: color ?? Colors.black,
-            fontSize: fontSize,
-            height: maxLines == 1 ? 1.0 : 1.4,
-          ),
+        color: color,
+        fontSize: fontSize,
+        height: maxLines == 1 ? 1.0 : 1.4,
+      ),
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: overflow,
@@ -261,10 +261,10 @@ class TlabelSmall12 extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.labelSmall!.copyWith(
-            color: color ?? Colors.black,
-            fontSize: fontSize,
-            height: maxLines == 1 ? 1.0 : 1.4,
-          ),
+        color: color,
+        fontSize: fontSize,
+        height: maxLines == 1 ? 1.0 : 1.4,
+      ),
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: overflow,
