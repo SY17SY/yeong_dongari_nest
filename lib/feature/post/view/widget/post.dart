@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yeong_dongari_nest/constants/colors.dart';
 import 'package:yeong_dongari_nest/constants/gaps.dart';
 import 'package:yeong_dongari_nest/constants/sizes.dart';
 import 'package:yeong_dongari_nest/constants/text.dart';
 import 'package:yeong_dongari_nest/feature/post/model/post_model.dart';
+import 'package:yeong_dongari_nest/feature/post/view/post_detail_screen.dart';
 
 class Post extends ConsumerWidget {
   final PostModel post;
 
   const Post({super.key, required this.post});
 
-  void _onPostTap() {}
+  void _onPostTap(BuildContext context) {
+    context.pushNamed(
+      PostDetailScreen.routeName,
+      pathParameters: {"tab": "post", "postId": post.id},
+      extra: post,
+    );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: _onPostTap,
+      onTap: () => _onPostTap(context),
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: Sizes.d12,
@@ -30,7 +38,18 @@ class Post extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(child: TtitleSmall16(post.title)),
-                Gaps.h8,
+                if (post.isNotice)
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: Sizes.d8,
+                      vertical: Sizes.d4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.circular(Sizes.d4),
+                    ),
+                    child: TlabelSmall12("공지", color: Colors.white),
+                  ),
               ],
             ),
             Gaps.v8,
@@ -58,27 +77,22 @@ class Post extends ConsumerWidget {
                         Gaps.v8,
                       ],
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.heart,
-                                size: Sizes.d12,
-                                color: AppColors.neutral500,
-                              ),
-                              Gaps.h4,
-                              TlabelSmall12(post.likes.toString()),
-                              Gaps.h12,
-                              FaIcon(
-                                FontAwesomeIcons.comment,
-                                size: Sizes.d12,
-                                color: AppColors.neutral500,
-                              ),
-                              Gaps.h4,
-                              TlabelSmall12(post.comments.toString()),
-                            ],
+                          FaIcon(
+                            FontAwesomeIcons.heart,
+                            size: Sizes.d12,
+                            color: AppColors.neutral500,
                           ),
+                          Gaps.h4,
+                          TlabelSmall12(post.likes.toString()),
+                          Gaps.h12,
+                          FaIcon(
+                            FontAwesomeIcons.comment,
+                            size: Sizes.d12,
+                            color: AppColors.neutral500,
+                          ),
+                          Gaps.h4,
+                          TlabelSmall12(post.comments.toString()),
                         ],
                       ),
                     ],
