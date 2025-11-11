@@ -11,7 +11,7 @@
 
 - [ ] feat: Post Screen 구현
 
-  - [ ] feat: 일반 게시글 구현
+  - [x] feat: 일반 게시글 구현
   - [ ] feat: 행사 게시글 구현
 
 - [ ] feat: Home Screen 구현
