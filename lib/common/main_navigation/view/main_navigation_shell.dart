@@ -7,7 +7,7 @@ import 'package:yeong_dongari_nest/common/main_navigation/view_model/main_naviga
 import 'package:yeong_dongari_nest/common/main_navigation/view/widget/nav_tab.dart';
 import 'package:yeong_dongari_nest/feature/home/view/home_screen.dart';
 import 'package:yeong_dongari_nest/feature/inbox/view/inbox_screen.dart';
-import 'package:yeong_dongari_nest/feature/post/view/post_screen.dart';
+import 'package:yeong_dongari_nest/feature/feed/view/feed_screen.dart';
 import 'package:yeong_dongari_nest/feature/profile/view/profile_screen.dart';
 import 'package:yeong_dongari_nest/feature/upload/view/upload_screen.dart';
 
@@ -63,7 +63,7 @@ class _MainNavigationShellState extends ConsumerState<MainNavigationShell> {
       body: Stack(
         children: [
           Offstage(offstage: selectedIndex != 0, child: HomeScreen()),
-          Offstage(offstage: selectedIndex != 1, child: PostScreen()),
+          Offstage(offstage: selectedIndex != 1, child: FeedScreen()),
           Offstage(offstage: selectedIndex != 3, child: InboxScreen()),
           Offstage(offstage: selectedIndex != 4, child: ProfileScreen()),
         ],
@@ -82,7 +82,7 @@ class _MainNavigationShellState extends ConsumerState<MainNavigationShell> {
             NavTab(
               icon: FontAwesomeIcons.compass,
               selectedIcon: FontAwesomeIcons.solidCompass,
-              text: "Post",
+              text: "Feed",
               isSelected: selectedIndex == 1,
               onTap: () => _onTap(1),
               selectedIndex: selectedIndex,

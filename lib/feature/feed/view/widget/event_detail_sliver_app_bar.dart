@@ -5,16 +5,16 @@ import 'package:yeong_dongari_nest/constants/colors.dart';
 import 'package:yeong_dongari_nest/constants/gaps.dart';
 import 'package:yeong_dongari_nest/constants/sizes.dart';
 import 'package:yeong_dongari_nest/constants/text.dart';
-import 'package:yeong_dongari_nest/feature/post/model/post_model.dart';
+import 'package:yeong_dongari_nest/feature/feed/model/event_model.dart';
 
-class PostDetailSliverAppBar extends ConsumerWidget {
-  final PostModel post;
-  final VoidCallback onMenuTap;
+class EventDetailSliverAppBar extends ConsumerWidget {
+  final EventModel event;
+  final VoidCallback? onMenuTap;
 
-  const PostDetailSliverAppBar({
+  const EventDetailSliverAppBar({
     super.key,
-    required this.post,
-    required this.onMenuTap,
+    required this.event,
+    this.onMenuTap,
   });
 
   String _formatTime(DateTime dateTime) {
@@ -22,7 +22,7 @@ class PostDetailSliverAppBar extends ConsumerWidget {
     final difference = now.difference(dateTime);
 
     if (difference.inDays > 0) {
-      return '${dateTime.month}월 ${dateTime.day}일 ${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}';
+      return '${difference.inDays}일 전';
     } else if (difference.inHours > 0) {
       return '${difference.inHours}시간 전';
     } else if (difference.inMinutes > 0) {
@@ -37,7 +37,7 @@ class PostDetailSliverAppBar extends ConsumerWidget {
 
     final textPainter = TextPainter(
       text: TextSpan(
-        text: post.title,
+        text: event.title,
         style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 20),
       ),
       maxLines: 5,
@@ -49,7 +49,7 @@ class PostDetailSliverAppBar extends ConsumerWidget {
 
     final titleHeight = textPainter.height;
 
-    final noticeHeight = post.isNotice ? 28.0 : 0.0;
+    final noticeHeight = event.isNotice ? 28.0 : 0.0;
 
     final totalHeight = baseHeight + titleHeight + noticeHeight;
     return totalHeight.clamp(140.0, 400.0);
@@ -83,7 +83,7 @@ class PostDetailSliverAppBar extends ConsumerWidget {
               right: Sizes.d56,
               bottom: Sizes.d18,
             ),
-            title: !isExpanded ? TtitleMedium18(post.title) : null,
+            title: !isExpanded ? TtitleMedium18(event.title) : null,
             centerTitle: false,
             background: Padding(
               padding: EdgeInsets.only(
@@ -96,7 +96,7 @@ class PostDetailSliverAppBar extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (post.isNotice) ...[
+                  if (event.isNotice) ...[
                     Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: Sizes.d8,
@@ -110,7 +110,7 @@ class PostDetailSliverAppBar extends ConsumerWidget {
                     ),
                     Gaps.v8,
                   ],
-                  TtitleMedium18(post.title, maxLines: 5),
+                  TtitleMedium18(event.title, maxLines: 5),
                   Gaps.v12,
                   Row(
                     children: [
@@ -118,7 +118,7 @@ class PostDetailSliverAppBar extends ConsumerWidget {
                         radius: Sizes.d16,
                         backgroundColor: AppColors.neutral300LD(context, ref),
                         child: TlabelSmall12(
-                          post.name[0],
+                          event.name[0],
                           color: AppColors.neutral600LD(context, ref),
                         ),
                       ),
@@ -126,10 +126,10 @@ class PostDetailSliverAppBar extends ConsumerWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TbodyMedium16(post.name),
+                          TbodyMedium16(event.name),
                           Gaps.v2,
                           TlabelSmall12(
-                            _formatTime(post.createdAt),
+                            _formatTime(event.createdAt),
                             color: AppColors.neutral500,
                           ),
                         ],
@@ -137,7 +137,7 @@ class PostDetailSliverAppBar extends ConsumerWidget {
                     ],
                   ),
                   Gaps.v12,
-                  Divider(),
+                  Divider(color: AppColors.neutral200LD(context, ref)),
                 ],
               ),
             ),

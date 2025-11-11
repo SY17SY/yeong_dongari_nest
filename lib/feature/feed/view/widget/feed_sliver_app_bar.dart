@@ -3,8 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yeong_dongari_nest/constants/sizes.dart';
 import 'package:yeong_dongari_nest/constants/text.dart';
 
-class PostSliverAppBar extends StatelessWidget {
-  const PostSliverAppBar({super.key});
+class FeedSliverAppBar extends StatelessWidget {
+  const FeedSliverAppBar({super.key});
 
   void _onSearchTap() {}
 

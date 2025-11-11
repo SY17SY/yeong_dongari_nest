@@ -1,6 +1,6 @@
 enum NavigationTab {
   home(0, "home"),
-  post(1, "post"),
+  feed(1, "feed"),
   upload(2, "upload"),
   inbox(3, "inbox"),
   profile(4, "profile");
@@ -28,8 +28,8 @@ class NavigationState {
     switch (tab) {
       case "home":
         return NavigationTab.home;
-      case "post":
-        return NavigationTab.post;
+      case "feed":
+        return NavigationTab.feed;
       case "upload":
         return NavigationTab.upload;
       case "inbox":

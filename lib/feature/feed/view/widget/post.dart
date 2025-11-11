@@ -6,8 +6,8 @@ import 'package:yeong_dongari_nest/constants/colors.dart';
 import 'package:yeong_dongari_nest/constants/gaps.dart';
 import 'package:yeong_dongari_nest/constants/sizes.dart';
 import 'package:yeong_dongari_nest/constants/text.dart';
-import 'package:yeong_dongari_nest/feature/post/model/post_model.dart';
-import 'package:yeong_dongari_nest/feature/post/view/post_detail_screen.dart';
+import 'package:yeong_dongari_nest/feature/feed/model/post_model.dart';
+import 'package:yeong_dongari_nest/feature/feed/view/post_detail_screen.dart';
 
 class Post extends ConsumerWidget {
   final PostModel post;
@@ -17,7 +17,7 @@ class Post extends ConsumerWidget {
   void _onPostTap(BuildContext context) {
     context.pushNamed(
       PostDetailScreen.routeName,
-      pathParameters: {"tab": "post", "postId": post.id},
+      pathParameters: {"tab": "feed", "postId": post.id},
       extra: post,
     );
   }

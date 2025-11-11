@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yeong_dongari_nest/common/main_navigation/view/main_navigation_shell.dart';
 import 'package:yeong_dongari_nest/feature/home/view/home_screen.dart';
-import 'package:yeong_dongari_nest/feature/post/model/event_model.dart';
-import 'package:yeong_dongari_nest/feature/post/model/post_model.dart';
-import 'package:yeong_dongari_nest/feature/post/view/event_detail_screen.dart';
-import 'package:yeong_dongari_nest/feature/post/view/post_detail_screen.dart';
+import 'package:yeong_dongari_nest/feature/feed/model/event_model.dart';
+import 'package:yeong_dongari_nest/feature/feed/model/post_model.dart';
+import 'package:yeong_dongari_nest/feature/feed/view/event_detail_screen.dart';
+import 'package:yeong_dongari_nest/feature/feed/view/post_detail_screen.dart';
 import 'package:yeong_dongari_nest/feature/upload/view/upload_screen.dart';
 
 final routerProvider = Provider((ref) {
@@ -15,7 +15,7 @@ final routerProvider = Provider((ref) {
     routes: [
       GoRoute(
         name: MainNavigationShell.routeName,
-        path: "/:tab(home|post|inbox|profile)",
+        path: "/:tab(home|feed|inbox|profile)",
         builder: (context, state) {
           final tab = state.pathParameters["tab"]!;
           return MainNavigationShell(tab: tab);

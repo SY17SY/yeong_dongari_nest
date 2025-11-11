@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:yeong_dongari_nest/feature/post/model/event_model.dart';
+import 'package:yeong_dongari_nest/feature/feed/model/event_model.dart';
 
 class EventRepository {
   Stream<List<EventModel>> getEvents() {

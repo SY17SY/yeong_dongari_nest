@@ -5,8 +5,8 @@ import 'package:yeong_dongari_nest/constants/colors.dart';
 import 'package:yeong_dongari_nest/constants/gaps.dart';
 import 'package:yeong_dongari_nest/constants/sizes.dart';
 import 'package:yeong_dongari_nest/constants/text.dart';
-import 'package:yeong_dongari_nest/feature/post/model/event_model.dart';
-import 'package:yeong_dongari_nest/feature/post/view/event_detail_screen.dart';
+import 'package:yeong_dongari_nest/feature/feed/model/event_model.dart';
+import 'package:yeong_dongari_nest/feature/feed/view/event_detail_screen.dart';
 
 class Event extends ConsumerWidget {
   final EventModel event;
@@ -16,7 +16,7 @@ class Event extends ConsumerWidget {
   void _onEventTap(BuildContext context) {
     context.pushNamed(
       EventDetailScreen.routeName,
-      pathParameters: {"tab": "post", "eventId": event.id},
+      pathParameters: {"tab": "feed", "eventId": event.id},
       extra: event,
     );
   }

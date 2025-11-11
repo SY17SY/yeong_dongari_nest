@@ -4,22 +4,22 @@ import 'package:yeong_dongari_nest/constants/colors.dart';
 import 'package:yeong_dongari_nest/constants/gaps.dart';
 import 'package:yeong_dongari_nest/constants/sizes.dart';
 import 'package:yeong_dongari_nest/constants/text.dart';
-import 'package:yeong_dongari_nest/feature/post/view/widget/event.dart';
-import 'package:yeong_dongari_nest/feature/post/view/widget/post.dart';
-import 'package:yeong_dongari_nest/feature/post/view/widget/post_sliver_app_bar.dart';
-import 'package:yeong_dongari_nest/feature/post/view_model/events_vm.dart';
-import 'package:yeong_dongari_nest/feature/post/view_model/posts_vm.dart';
+import 'package:yeong_dongari_nest/feature/feed/view/widget/event.dart';
+import 'package:yeong_dongari_nest/feature/feed/view/widget/post.dart';
+import 'package:yeong_dongari_nest/feature/feed/view/widget/feed_sliver_app_bar.dart';
+import 'package:yeong_dongari_nest/feature/feed/view_model/events_vm.dart';
+import 'package:yeong_dongari_nest/feature/feed/view_model/posts_vm.dart';
 
-class PostScreen extends ConsumerStatefulWidget {
-  static const String routeName = "post";
-  static const String routeUrl = "/post";
-  const PostScreen({super.key});
+class FeedScreen extends ConsumerStatefulWidget {
+  static const String routeName = "feed";
+  static const String routeUrl = "/feed";
+  const FeedScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _PostScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _FeedScreenState();
 }
 
-class _PostScreenState extends ConsumerState<PostScreen> {
+class _FeedScreenState extends ConsumerState<FeedScreen> {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -33,7 +33,7 @@ class _PostScreenState extends ConsumerState<PostScreen> {
     return CustomScrollView(
       controller: _scrollController,
       slivers: [
-        PostSliverAppBar(),
+        FeedSliverAppBar(),
         ref
             .watch(eventsProvider)
             .when(

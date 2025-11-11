@@ -5,29 +5,40 @@ import 'package:yeong_dongari_nest/constants/colors.dart';
 import 'package:yeong_dongari_nest/constants/gaps.dart';
 import 'package:yeong_dongari_nest/constants/sizes.dart';
 import 'package:yeong_dongari_nest/constants/text.dart';
-import 'package:yeong_dongari_nest/feature/post/model/post_model.dart';
-import 'package:yeong_dongari_nest/feature/post/view/widget/post_detail_sliver_app_bar.dart';
+import 'package:yeong_dongari_nest/feature/feed/model/event_model.dart';
+import 'package:yeong_dongari_nest/feature/feed/view/widget/event_detail_sliver_app_bar.dart';
 
-class PostDetailScreen extends ConsumerStatefulWidget {
-  static const String routeName = "postDetail";
-  static const String routeUrl = "post/:postId";
+class EventDetailScreen extends ConsumerStatefulWidget {
+  static const String routeName = "eventDetail";
+  static const String routeUrl = "event/:eventId";
 
-  final String postId;
-  final PostModel post;
+  final String eventId;
+  final EventModel event;
 
-  const PostDetailScreen({super.key, required this.postId, required this.post});
+  const EventDetailScreen({
+    super.key,
+    required this.eventId,
+    required this.event,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _PostDetailScreenState();
+      _EventDetailScreenState();
 }
 
-class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
+class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
   bool _isLiked = false;
+  bool _isJoined = false;
 
   void _onLikeTap() {
     setState(() {
       _isLiked = !_isLiked;
+    });
+  }
+
+  void _onJoinTap() {
+    setState(() {
+      _isJoined = !_isJoined;
     });
   }
 
@@ -48,18 +59,18 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          PostDetailSliverAppBar(post: widget.post, onMenuTap: _onMenuTap),
+          EventDetailSliverAppBar(event: widget.event, onMenuTap: _onMenuTap),
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Content
-                if (widget.post.content != null &&
-                    widget.post.content!.isNotEmpty) ...[
+                if (widget.event.content != null &&
+                    widget.event.content!.isNotEmpty) ...[
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: Sizes.d16),
                     child: TbodyMedium16(
-                      widget.post.content!,
+                      widget.event.content!,
                       color: AppColors.neutral700LD(context, ref),
                       maxLines: 100,
                     ),
@@ -68,12 +79,12 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
                 ],
 
                 // Images
-                if (widget.post.imgUrls != null &&
-                    widget.post.imgUrls!.isNotEmpty) ...[
+                if (widget.event.imgUrls != null &&
+                    widget.event.imgUrls!.isNotEmpty) ...[
                   SizedBox(
                     height: 300,
                     child: PageView.builder(
-                      itemCount: widget.post.imgUrls!.length,
+                      itemCount: widget.event.imgUrls!.length,
                       itemBuilder: (context, index) {
                         return Container(
                           margin: EdgeInsets.symmetric(horizontal: Sizes.d16),
@@ -81,7 +92,7 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
                             borderRadius: BorderRadius.circular(Sizes.d12),
                             color: AppColors.neutral200LD(context, ref),
                             image: DecorationImage(
-                              image: NetworkImage(widget.post.imgUrls![index]),
+                              image: NetworkImage(widget.event.imgUrls![index]),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -90,7 +101,7 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
                     ),
                   ),
                   Gaps.v16,
-                ] else if (widget.post.thumbUrl != null) ...[
+                ] else if (widget.event.thumbUrl != null) ...[
                   // Single thumbnail image
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: Sizes.d16),
@@ -99,7 +110,7 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
                       borderRadius: BorderRadius.circular(Sizes.d12),
                       color: AppColors.neutral200LD(context, ref),
                       image: DecorationImage(
-                        image: NetworkImage(widget.post.thumbUrl!),
+                        image: NetworkImage(widget.event.thumbUrl!),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -114,13 +125,24 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
                     children: [
                       Divider(),
                       Gaps.v8,
+                      _ActionButton(
+                        icon: _isJoined
+                            ? FontAwesomeIcons.solidUser
+                            : FontAwesomeIcons.user,
+                        label: '참여',
+                        onTap: _onJoinTap,
+                        isActive: _isJoined,
+                      ),
+                      Gaps.v8,
+                      Divider(),
+                      Gaps.v12,
                       Row(
                         children: [
                           TlabelLarge14(
-                            '좋아요 ${widget.post.likes + (_isLiked ? 1 : 0)}개',
+                            '좋아요 ${widget.event.likes + (_isLiked ? 1 : 0)}개',
                           ),
                           Gaps.h16,
-                          TlabelLarge14('댓글 ${widget.post.comments}개'),
+                          TlabelLarge14('댓글 ${widget.event.comments}개'),
                         ],
                       ),
                       Gaps.v8,
@@ -161,7 +183,7 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TtitleMedium18('댓글 ${widget.post.comments}'),
+                      TtitleMedium18('댓글 ${widget.event.comments}'),
                       Gaps.v16,
                       Center(
                         child: TbodyMedium16(
@@ -199,13 +221,14 @@ class _ActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
+      behavior: HitTestBehavior.translucent,
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: Sizes.d16,
+          horizontal: Sizes.d24,
           vertical: Sizes.d8,
         ),
         child: Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FaIcon(
               icon,
