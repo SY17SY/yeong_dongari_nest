@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yeong_dongari_nest/constants/colors.dart';
 import 'package:yeong_dongari_nest/constants/gaps.dart';
@@ -6,7 +7,7 @@ import 'package:yeong_dongari_nest/constants/sizes.dart';
 import 'package:yeong_dongari_nest/constants/text.dart';
 import 'package:yeong_dongari_nest/feature/post/model/post_model.dart';
 
-class Post extends StatelessWidget {
+class Post extends ConsumerWidget {
   final PostModel post;
 
   const Post({super.key, required this.post});
@@ -14,7 +15,7 @@ class Post extends StatelessWidget {
   void _onPostTap() {}
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: _onPostTap,
       child: Padding(
@@ -35,13 +36,12 @@ class Post extends StatelessWidget {
             Gaps.v8,
             Row(
               children: [
-                TlabelSmall12(post.name, color: AppColors.neutral600),
+                TlabelSmall12(post.name),
                 Gaps.h4,
-                TlabelSmall12("•", color: AppColors.neutral400),
+                TlabelSmall12("•", color: AppColors.neutral400LD(context, ref)),
                 Gaps.h4,
                 TlabelSmall12(
                   "${post.createdAt.hour.toString().padLeft(2, '0')}:${post.createdAt.minute.toString().padLeft(2, '0')}",
-                  color: AppColors.neutral500,
                 ),
               ],
             ),
@@ -68,10 +68,7 @@ class Post extends StatelessWidget {
                                 color: AppColors.neutral500,
                               ),
                               Gaps.h4,
-                              TlabelSmall12(
-                                post.likes.toString(),
-                                color: AppColors.neutral600,
-                              ),
+                              TlabelSmall12(post.likes.toString()),
                               Gaps.h12,
                               FaIcon(
                                 FontAwesomeIcons.comment,
@@ -79,10 +76,7 @@ class Post extends StatelessWidget {
                                 color: AppColors.neutral500,
                               ),
                               Gaps.h4,
-                              TlabelSmall12(
-                                post.comments.toString(),
-                                color: AppColors.neutral600,
-                              ),
+                              TlabelSmall12(post.comments.toString()),
                             ],
                           ),
                         ],
@@ -97,7 +91,7 @@ class Post extends StatelessWidget {
                     height: Sizes.d80,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Sizes.d8),
-                      color: AppColors.neutral200,
+                      color: AppColors.neutral200LD(context, ref),
                       image: DecorationImage(
                         image: NetworkImage(post.thumbUrl!),
                         fit: BoxFit.cover,

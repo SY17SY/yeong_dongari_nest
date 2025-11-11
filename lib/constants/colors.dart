@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:canary_oklch/canary_oklch.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:yeong_dongari_nest/feature/setting/view_model/setting_vm.dart';
 
 class AppColors {
   // Primary colors using OKLCH
@@ -26,6 +28,52 @@ class AppColors {
   static final neutral700 = OklchColor(0.4, 0.008, 267).toColor();
   static final neutral800 = OklchColor(0.3, 0.008, 267).toColor();
   static final neutral900 = OklchColor(0.1, 0.008, 267).toColor();
+
+  // Auto-reversing neutral colors (light mode ↔ dark mode)
+  static Color neutral100LD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? neutral900 : neutral100;
+  }
+
+  static Color neutral200LD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? neutral800 : neutral200;
+  }
+
+  static Color neutral300LD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? neutral700 : neutral300;
+  }
+
+  static Color neutral400LD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? neutral600 : neutral400;
+  }
+
+  static Color neutral500LD(BuildContext context, WidgetRef ref) {
+    // neutral500 stays the same in both modes
+    return neutral500;
+  }
+
+  static Color neutral600LD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? neutral400 : neutral600;
+  }
+
+  static Color neutral700LD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? neutral300 : neutral700;
+  }
+
+  static Color neutral800LD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? neutral200 : neutral800;
+  }
+
+  static Color neutral900LD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? neutral100 : neutral900;
+  }
 
   // Success, Warning, Error colors
   static final success = OklchColor(0.7, 0.18, 140).toColor();

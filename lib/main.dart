@@ -66,6 +66,7 @@ class MyApp extends ConsumerWidget {
           labelColor: Colors.white,
           indicatorColor: Colors.transparent,
         ),
+        dividerTheme: DividerThemeData(color: AppColors.neutral200),
         textTheme: TextTheme(
           titleLarge: TextStyle(
             fontFamily: "PretendardSemibold",
@@ -152,6 +153,7 @@ class MyApp extends ConsumerWidget {
           labelColor: Colors.white,
           indicatorColor: Colors.transparent,
         ),
+        dividerTheme: DividerThemeData(color: AppColors.neutral800),
         textTheme: TextTheme(
           titleLarge: TextStyle(
             fontFamily: "PretendardSemibold",
