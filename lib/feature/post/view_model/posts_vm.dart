@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yeong_dongari_nest/feature/post/model/post_model.dart';
 import 'package:yeong_dongari_nest/feature/post/repo/post_repo.dart';
 
-class PostViewModel extends StreamNotifier<List<PostModel>> {
+class PostsViewModel extends StreamNotifier<List<PostModel>> {
   late final PostRepository _postRepository;
 
   @override
@@ -16,6 +16,6 @@ class PostViewModel extends StreamNotifier<List<PostModel>> {
   }
 }
 
-final postProvider = StreamNotifierProvider<PostViewModel, List<PostModel>>(
-  () => PostViewModel(),
+final postsProvider = StreamNotifierProvider<PostsViewModel, List<PostModel>>(
+  () => PostsViewModel(),
 );

@@ -5,7 +5,7 @@ import 'package:yeong_dongari_nest/constants/sizes.dart';
 import 'package:yeong_dongari_nest/constants/text.dart';
 import 'package:yeong_dongari_nest/feature/post/view/widget/post.dart';
 import 'package:yeong_dongari_nest/feature/post/view/widget/post_sliver_app_bar.dart';
-import 'package:yeong_dongari_nest/feature/post/view_model/post_vm.dart';
+import 'package:yeong_dongari_nest/feature/post/view_model/posts_vm.dart';
 
 class PostScreen extends ConsumerStatefulWidget {
   static const String routeName = "post";
@@ -32,7 +32,7 @@ class _PostScreenState extends ConsumerState<PostScreen> {
       slivers: [
         PostSliverAppBar(),
         ref
-            .watch(postProvider)
+            .watch(postsProvider)
             .when(
               data: (posts) {
                 if (posts.isEmpty) {
