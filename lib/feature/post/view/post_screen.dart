@@ -52,7 +52,7 @@ class _PostScreenState extends ConsumerState<PostScreen> {
                   itemCount: posts.length,
                   itemBuilder: (context, index) => Post(post: posts[index]),
                   separatorBuilder: (context, index) =>
-                      Divider(color: AppColors.neutral400),
+                      Divider(color: AppColors.neutral400LD(context, ref)),
                 );
               },
               loading: () => SliverToBoxAdapter(
