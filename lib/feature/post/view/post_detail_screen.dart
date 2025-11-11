@@ -45,137 +45,139 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        PostDetailSliverAppBar(post: widget.post, onMenuTap: _onMenuTap),
-        SliverToBoxAdapter(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Content
-              if (widget.post.content != null &&
-                  widget.post.content!.isNotEmpty) ...[
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: Sizes.d16),
-                  child: TbodyMedium16(
-                    widget.post.content!,
-                    color: AppColors.neutral700LD(context, ref),
-                    maxLines: 100,
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          PostDetailSliverAppBar(post: widget.post, onMenuTap: _onMenuTap),
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Content
+                if (widget.post.content != null &&
+                    widget.post.content!.isNotEmpty) ...[
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: Sizes.d16),
+                    child: TbodyMedium16(
+                      widget.post.content!,
+                      color: AppColors.neutral700LD(context, ref),
+                      maxLines: 100,
+                    ),
                   ),
-                ),
-                Gaps.v16,
-              ],
+                  Gaps.v16,
+                ],
 
-              // Images
-              if (widget.post.imgUrls != null &&
-                  widget.post.imgUrls!.isNotEmpty) ...[
-                SizedBox(
-                  height: 300,
-                  child: PageView.builder(
-                    itemCount: widget.post.imgUrls!.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.symmetric(horizontal: Sizes.d16),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(Sizes.d12),
-                          color: AppColors.neutral200LD(context, ref),
-                          image: DecorationImage(
-                            image: NetworkImage(widget.post.imgUrls![index]),
-                            fit: BoxFit.cover,
+                // Images
+                if (widget.post.imgUrls != null &&
+                    widget.post.imgUrls!.isNotEmpty) ...[
+                  SizedBox(
+                    height: 300,
+                    child: PageView.builder(
+                      itemCount: widget.post.imgUrls!.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: EdgeInsets.symmetric(horizontal: Sizes.d16),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(Sizes.d12),
+                            color: AppColors.neutral200LD(context, ref),
+                            image: DecorationImage(
+                              image: NetworkImage(widget.post.imgUrls![index]),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                Gaps.v16,
-              ] else if (widget.post.thumbUrl != null) ...[
-                // Single thumbnail image
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: Sizes.d16),
-                  height: 300,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Sizes.d12),
-                    color: AppColors.neutral200LD(context, ref),
-                    image: DecorationImage(
-                      image: NetworkImage(widget.post.thumbUrl!),
-                      fit: BoxFit.cover,
+                        );
+                      },
                     ),
                   ),
-                ),
-                Gaps.v16,
-              ],
-
-              // Stats and Actions
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: Sizes.d16),
-                child: Column(
-                  children: [
-                    Divider(),
-                    Gaps.v8,
-                    Row(
-                      children: [
-                        TlabelLarge14(
-                          '좋아요 ${widget.post.likes + (_isLiked ? 1 : 0)}개',
-                        ),
-                        Gaps.h16,
-                        TlabelLarge14('댓글 ${widget.post.comments}개'),
-                      ],
-                    ),
-                    Gaps.v8,
-                    Divider(),
-                    Gaps.v4,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        _ActionButton(
-                          icon: _isLiked
-                              ? FontAwesomeIcons.solidHeart
-                              : FontAwesomeIcons.heart,
-                          label: '좋아요',
-                          onTap: _onLikeTap,
-                          isActive: _isLiked,
-                        ),
-                        _ActionButton(
-                          icon: FontAwesomeIcons.comment,
-                          label: '댓글',
-                          onTap: _onCommentTap,
-                        ),
-                        _ActionButton(
-                          icon: FontAwesomeIcons.shareNodes,
-                          label: '공유',
-                          onTap: _onShareTap,
-                        ),
-                      ],
-                    ),
-                    Gaps.v4,
-                    Divider(),
-                  ],
-                ),
-              ),
-
-              // Comments section placeholder
-              Padding(
-                padding: EdgeInsets.all(Sizes.d16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TtitleMedium18('댓글 ${widget.post.comments}'),
-                    Gaps.v16,
-                    Center(
-                      child: TbodyMedium16(
-                        '아직 댓글이 없습니다.',
-                        color: AppColors.neutral400LD(context, ref),
+                  Gaps.v16,
+                ] else if (widget.post.thumbUrl != null) ...[
+                  // Single thumbnail image
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: Sizes.d16),
+                    height: 300,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Sizes.d12),
+                      color: AppColors.neutral200LD(context, ref),
+                      image: DecorationImage(
+                        image: NetworkImage(widget.post.thumbUrl!),
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    Gaps.v40,
-                  ],
+                  ),
+                  Gaps.v16,
+                ],
+
+                // Stats and Actions
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: Sizes.d16),
+                  child: Column(
+                    children: [
+                      Divider(),
+                      Gaps.v8,
+                      Row(
+                        children: [
+                          TlabelLarge14(
+                            '좋아요 ${widget.post.likes + (_isLiked ? 1 : 0)}개',
+                          ),
+                          Gaps.h16,
+                          TlabelLarge14('댓글 ${widget.post.comments}개'),
+                        ],
+                      ),
+                      Gaps.v8,
+                      Divider(),
+                      Gaps.v4,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          _ActionButton(
+                            icon: _isLiked
+                                ? FontAwesomeIcons.solidHeart
+                                : FontAwesomeIcons.heart,
+                            label: '좋아요',
+                            onTap: _onLikeTap,
+                            isActive: _isLiked,
+                          ),
+                          _ActionButton(
+                            icon: FontAwesomeIcons.comment,
+                            label: '댓글',
+                            onTap: _onCommentTap,
+                          ),
+                          _ActionButton(
+                            icon: FontAwesomeIcons.shareNodes,
+                            label: '공유',
+                            onTap: _onShareTap,
+                          ),
+                        ],
+                      ),
+                      Gaps.v4,
+                      Divider(),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+
+                // Comments section placeholder
+                Padding(
+                  padding: EdgeInsets.all(Sizes.d16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TtitleMedium18('댓글 ${widget.post.comments}'),
+                      Gaps.v16,
+                      Center(
+                        child: TbodyMedium16(
+                          '아직 댓글이 없습니다.',
+                          color: AppColors.neutral400LD(context, ref),
+                        ),
+                      ),
+                      Gaps.v40,
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
