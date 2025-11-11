@@ -9,10 +9,10 @@
 - [x] feat: View 틀 구현
 - [x] feat: Navigation Bar (Home, Feed, Upload, Inbox, My) 구현
 
-- [ ] feat: Feed Screen 구현
+- [x] feat: Feed Screen 구현
 
   - [x] feat: 일반 게시글 구현 (Post)
-  - [ ] feat: 행사 게시글 구현 (Event)
+  - [x] feat: 행사 게시글 구현 (Event)
 
 - [ ] feat: Home Screen 구현
 
