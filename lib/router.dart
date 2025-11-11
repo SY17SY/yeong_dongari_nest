@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yeong_dongari_nest/common/main_navigation/view/main_navigation_shell.dart';
 import 'package:yeong_dongari_nest/feature/home/view/home_screen.dart';
+import 'package:yeong_dongari_nest/feature/post/model/event_model.dart';
 import 'package:yeong_dongari_nest/feature/post/model/post_model.dart';
+import 'package:yeong_dongari_nest/feature/post/view/event_detail_screen.dart';
 import 'package:yeong_dongari_nest/feature/post/view/post_detail_screen.dart';
 import 'package:yeong_dongari_nest/feature/upload/view/upload_screen.dart';
 
@@ -26,6 +28,15 @@ final routerProvider = Provider((ref) {
               final postId = state.pathParameters["postId"]!;
               final post = state.extra as PostModel;
               return PostDetailScreen(postId: postId, post: post);
+            },
+          ),
+          GoRoute(
+            name: EventDetailScreen.routeName,
+            path: EventDetailScreen.routeUrl,
+            builder: (context, state) {
+              final eventId = state.pathParameters["eventId"]!;
+              final event = state.extra as EventModel;
+              return EventDetailScreen(eventId: eventId, event: event);
             },
           ),
         ],

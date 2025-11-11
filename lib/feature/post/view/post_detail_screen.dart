@@ -10,7 +10,7 @@ import 'package:yeong_dongari_nest/feature/post/view/widget/post_detail_sliver_a
 
 class PostDetailScreen extends ConsumerStatefulWidget {
   static const String routeName = "postDetail";
-  static const String routeUrl = ":postId";
+  static const String routeUrl = "post/:postId";
 
   final String postId;
   final PostModel post;

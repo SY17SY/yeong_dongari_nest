@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yeong_dongari_nest/constants/colors.dart';
 import 'package:yeong_dongari_nest/constants/gaps.dart';
 import 'package:yeong_dongari_nest/constants/sizes.dart';
 import 'package:yeong_dongari_nest/constants/text.dart';
 import 'package:yeong_dongari_nest/feature/post/model/event_model.dart';
+import 'package:yeong_dongari_nest/feature/post/view/event_detail_screen.dart';
 
 class Event extends ConsumerWidget {
   final EventModel event;
 
   const Event({super.key, required this.event});
 
-  void _onEventTap(BuildContext context) {}
+  void _onEventTap(BuildContext context) {
+    context.pushNamed(
+      EventDetailScreen.routeName,
+      pathParameters: {"tab": "post", "eventId": event.id},
+      extra: event,
+    );
+  }
 
   String _formatDate(DateTimeRange dateRange) {
     final start = dateRange.start;
