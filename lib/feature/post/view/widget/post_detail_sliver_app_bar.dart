@@ -38,7 +38,7 @@ class PostDetailSliverAppBar extends ConsumerWidget {
     final textPainter = TextPainter(
       text: TextSpan(
         text: post.title,
-        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 18),
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 20),
       ),
       maxLines: 5,
       textDirection: TextDirection.ltr,
