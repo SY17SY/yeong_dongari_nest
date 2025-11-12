@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,8 +18,9 @@ class PostDetailSliverAppBar extends ConsumerWidget {
     required this.onMenuTap,
   });
 
-  String _formatTime(DateTime dateTime) {
+  String _formatTime(Timestamp dateTimestamp) {
     final now = DateTime.now();
+    final dateTime = dateTimestamp.toDate();
     final difference = now.difference(dateTime);
 
     if (difference.inDays > 0) {

@@ -24,6 +24,7 @@ class Post extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final createdAt = post.createdAt.toDate();
     return GestureDetector(
       onTap: () => _onPostTap(context),
       child: Padding(
@@ -60,7 +61,7 @@ class Post extends ConsumerWidget {
                 TlabelSmall12("•", color: AppColors.neutral400LD(context, ref)),
                 Gaps.h4,
                 TlabelSmall12(
-                  "${post.createdAt.hour.toString().padLeft(2, '0')}:${post.createdAt.minute.toString().padLeft(2, '0')}",
+                  "${createdAt.hour.toString().padLeft(2, '0')}:${createdAt.minute.toString().padLeft(2, '0')}",
                 ),
               ],
             ),

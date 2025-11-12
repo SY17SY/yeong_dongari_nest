@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class PostModel {
   String id;
   final String uid;
@@ -9,7 +11,7 @@ class PostModel {
   final int likes;
   final int comments;
   final bool isNotice;
-  final DateTime createdAt;
+  final Timestamp createdAt;
 
   PostModel({
     this.id = "",
@@ -38,7 +40,7 @@ class PostModel {
       likes = json["likes"],
       comments = json["comments"],
       isNotice = json["isNotice"],
-      createdAt = json["createdAt"];
+      createdAt = json["createdAt"] as Timestamp;
 
   Map<String, dynamic> toJson() {
     return {

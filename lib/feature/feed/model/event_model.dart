@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class EventModel {
@@ -14,7 +15,7 @@ class EventModel {
   final DateTimeRange date;
   final String? place;
   final bool isNotice;
-  final DateTime createdAt;
+  final Timestamp createdAt;
 
   EventModel({
     this.id = "",
@@ -51,7 +52,7 @@ class EventModel {
       date = json["date"],
       place = json["place"],
       isNotice = json["isNotice"],
-      createdAt = json["createdAt"];
+      createdAt = json["createdAt"] as Timestamp;
 
   Map<String, dynamic> toJson() {
     return {
