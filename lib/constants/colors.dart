@@ -11,12 +11,54 @@ class AppColors {
   static final primaryDark = OklchColor(0.5, 0.1234, 151.09).toColor();
   static final primaryDarkest = OklchColor(0.4, 0.1234, 151.09).toColor();
 
+  // Auto-reversing primary colors (light mode ↔ dark mode)
+  static Color primaryLightLD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? primaryDark : primaryLight;
+  }
+
+  static Color primaryLightestLD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? primaryDarkest : primaryLightest;
+  }
+
+  static Color primaryDarkLD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? primaryLight : primaryDark;
+  }
+
+  static Color primaryDarkestLD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? primaryLightest : primaryDarkest;
+  }
+
   // Secondary colors
   static final secondary = OklchColor(0.6, 0.1234, 232.24).toColor();
   static final secondaryLight = OklchColor(0.7, 0.1234, 232.24).toColor();
   static final secondaryLightest = OklchColor(0.8, 0.1234, 232.24).toColor();
   static final secondaryDark = OklchColor(0.5, 0.1234, 232.24).toColor();
   static final secondaryDarkest = OklchColor(0.4, 0.1234, 232.24).toColor();
+
+  // Auto-reversing secondary colors (light mode ↔ dark mode)
+  static Color secondaryLightLD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? secondaryDark : secondaryLight;
+  }
+
+  static Color secondaryLightestLD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? secondaryDarkest : secondaryLightest;
+  }
+
+  static Color secondaryDarkLD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? secondaryLight : secondaryDark;
+  }
+
+  static Color secondaryDarkestLD(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(settingProvider.notifier).isDark(context);
+    return isDark ? secondaryLightest : secondaryDarkest;
+  }
 
   // Neutral colors
   static final neutral100 = OklchColor(0.95, 0.008, 267).toColor();
