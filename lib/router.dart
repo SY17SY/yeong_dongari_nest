@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yeong_dongari_nest/common/main_navigation/view/main_navigation_shell.dart';
+import 'package:yeong_dongari_nest/feature/authentication/repo/auth_repo.dart';
+import 'package:yeong_dongari_nest/feature/authentication/view/login_screen.dart';
+import 'package:yeong_dongari_nest/feature/authentication/view/sign_up_screen.dart';
 import 'package:yeong_dongari_nest/feature/home/view/home_screen.dart';
 import 'package:yeong_dongari_nest/feature/feed/model/event_model.dart';
 import 'package:yeong_dongari_nest/feature/feed/model/post_model.dart';
@@ -12,7 +15,27 @@ import 'package:yeong_dongari_nest/feature/upload/view/upload_screen.dart';
 final routerProvider = Provider((ref) {
   return GoRouter(
     initialLocation: HomeScreen.routeUrl,
+    redirect: (context, state) {
+      final isLoggedIn = ref.read(authRepo).isLoggedIn;
+      if (!isLoggedIn) {
+        if (state.matchedLocation != SignUpScreen.routeUrl &&
+            state.matchedLocation != LoginScreen.routeUrl) {
+          return SignUpScreen.routeUrl;
+        }
+      }
+      return null;
+    },
     routes: [
+      GoRoute(
+        name: SignUpScreen.routeName,
+        path: SignUpScreen.routeUrl,
+        builder: (context, state) => SignUpScreen(),
+      ),
+      GoRoute(
+        name: LoginScreen.routeName,
+        path: LoginScreen.routeUrl,
+        builder: (context, state) => LoginScreen(),
+      ),
       GoRoute(
         name: MainNavigationShell.routeName,
         path: "/:tab(home|feed|inbox|profile)",
