@@ -10,10 +10,6 @@ class EventsViewModel extends StreamNotifier<List<EventModel>> {
     _eventRepository = ref.read(eventRepository);
     return _eventRepository.getEvents();
   }
-
-  Future<void> deleteEvent(String eventId) async {
-    await _eventRepository.deleteEvent(eventId);
-  }
 }
 
 final eventsProvider =

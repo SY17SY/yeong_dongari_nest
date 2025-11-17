@@ -10,10 +10,6 @@ class PostsViewModel extends StreamNotifier<List<PostModel>> {
     _postRepository = ref.read(postRepository);
     return _postRepository.getPosts();
   }
-
-  Future<void> deletePost(String postId) async {
-    await _postRepository.deletePost(postId);
-  }
 }
 
 final postsProvider = StreamNotifierProvider<PostsViewModel, List<PostModel>>(
